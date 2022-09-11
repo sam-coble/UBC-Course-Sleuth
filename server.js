@@ -1,11 +1,12 @@
 const { Expo } = require( 'expo-server-sdk' );
+const {readFileSync, writeFileSync} = require('fs');
 
 // Create a new Expo SDK client
 // optionally providing an access token if you have enabled push security
 let expo = new Expo({ accessToken: process.env.EXPO_ACCESS_TOKEN });
 
 
-const somePushTokens = ['ExponentPushToken[6rx3S6EoaNWAsDGSW9ONOU]'];
+const somePushTokens = readFileSync('tokens.txt', {encoding:'utf8', flag:'r'}).split('\n');
 
 
 // Create the messages that you want to send to clients
@@ -54,7 +55,7 @@ let tickets = [];
   }
 })();
 
-// ...
+
 
 // // Later, after the Expo push notification service has delivered the
 // // notifications to Apple or Google (usually quickly, but allow the the service
