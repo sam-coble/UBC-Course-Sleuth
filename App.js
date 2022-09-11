@@ -33,7 +33,7 @@ export default function App() {
 	const [expoPushToken, setExpoPushToken] = useState('dne');
 
 	useEffect(() => {
-		registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+		registerForPushNotificationsAsync().then(token => {setExpoPushToken(token);console.log(token);});
 
 	}, []);
 
