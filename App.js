@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 
 import React, {
-	Component,
+	component,
 	useState,
 	useEffect,
 } from 'react';
@@ -13,7 +13,23 @@ import {
 	Button,
 } from 'react-native';
 
-export default function App() {
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { useFonts } from 'expo-font';
+import Home from './screens/Home';
+
+
+const Stack = createStackNavigator();
+
+const theme = {
+	...DefaultTheme,
+	colors: {
+		...DefaultTheme.colors,
+		background: "transparent"
+	}
+}
+
+const App = () => {
 
 	// initial set to -1 as n/a
 	const [seatsRemaining, setSeatsRemaining] = useState(-1)
@@ -71,14 +87,22 @@ export default function App() {
 		getCourseStatus();
 	}, []);
 
+
 	return (
-		<View style={styles.container}>
-			<Text>Welcome to UBC Course Sleuth!!!</Text>
-			<Text> ( name in progress :) ) </Text>
-			<Button onPress={getCourseStatus} title="Update status of Ling 170 001" />
-			<Text> There are {seatsRemaining} seats remaining! </Text>
-			<StatusBar style="auto" />
-		</View>
+		<NavigationContainer theme={theme}>
+			<Stack.Navigator screenOptions={{ headerShown: false}}
+			initialRouteName="Home">
+				<Stack.Screen name="Home" component={Home} />
+				
+			</Stack.Navigator>
+		</NavigationContainer>
+		// <View style={styles.container}>
+		// 	<Text>Welcome to UBC Course Sleuth!!!</Text>
+		//	<Text> ( name in progress :) ) </Text>
+		//	<Button onPress={getCourseStatus} title="Update status of Ling 170 001" />
+		//	<Text> There are {seatsRemaining} seats remaining! </Text>
+		//	<StatusBar style="auto" />
+		// </View>
 	);
 
 }
@@ -91,3 +115,5 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 	},
 });
+
+export default App;
