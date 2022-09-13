@@ -133,7 +133,7 @@ export default function App() {
                 ? 'ios-information-circle'
                 : 'ios-information-circle-outline';
             } else if (route.name === 'Setting') {
-              iconName = focused ? 'ios-list-box' : 'ios-list';
+              iconName = focused ? 'ios-information-circle' : 'ios-information-circle-outline';
             } else if (route.name === 'Search') {
 				iconName = focused
                 ? 'ios-information-circle'
