@@ -27,3 +27,5 @@ function SearchScreen(props) {
 		</View>
 	);
 }
+
+export default SearchScreen;

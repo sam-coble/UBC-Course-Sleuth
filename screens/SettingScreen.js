@@ -27,3 +27,5 @@ function SettingScreen(props) {
 		</View>
 	);
 }
+
+export default SettingScreen;

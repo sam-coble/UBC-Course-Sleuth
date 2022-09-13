@@ -27,3 +27,5 @@ function HomeScreen(props) {
 		</View>
 	);
 }
+
+export default HomeScreen;
