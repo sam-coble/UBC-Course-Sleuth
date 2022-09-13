@@ -13,9 +13,10 @@ let data = {};
 let dataHasChanged = false;
 
 
+
 app.post('/addCourse', urlEncodedParser, (req, res) => {
 	dataHasChanged = true;
-	const {token, dept, course, sections} = req.body;
+	
 	data[token].push({dept, course, sections});
 	res.status(200).end();
 });
@@ -38,7 +39,12 @@ app.post('/removeCourse', urlEncodedParser, (req, res) => {
 	data[token].filter(e => e.dept != dept && e.course != course);
 	res.status(200).end();
 });
-
+app.post('/changeSections', urlEncodedParser, (req, res) => {
+	dataHasChanged = true;
+	const {token, dept, course, sections} = req.body;
+	data[token].find(e => e.dept == dept && e.course == course).sections = sections;
+	res.status(200).end();
+});
 
 
 const dataPath = './data.json';
@@ -55,6 +61,7 @@ async function loadData() {
 async function checkerFunc () {
 	if (dataHasChanged) {
 		saveData();
+		dataHasChanged = false;
 	}
 
 	sectionsToCheck = {};
