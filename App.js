@@ -27,28 +27,12 @@ Notifications.setNotificationHandler({
   }),
 });
 
-function HomeScreen(props) {
-	return (
-		<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-		  <Text>Home Screen</Text>
-		</View>
-	  );
-}
-
 const Tab = createBottomTabNavigator();
 
 const Stack = createNativeStackNavigator();
 
 
- class SettingScreen extends React.Component {  
-     render() {  
-         return (  
-             <View style={styles.container}>  
-                 <Text>Setting Screen</Text>  
-             </View>  
-         );  
-     }  
- }  
+
 
 export default function App() {
 
