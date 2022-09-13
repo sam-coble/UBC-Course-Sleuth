@@ -19,6 +19,10 @@ import {
 	Button,
 } from 'react-native';
 
+import HomeScreen from './screens/HomeScreen';
+import SettingScreen from './screens/SettingScreen';
+import SearchScreen from './screens/SearchScreen';
+
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
@@ -130,7 +134,11 @@ export default function App() {
                 : 'ios-information-circle-outline';
             } else if (route.name === 'Setting') {
               iconName = focused ? 'ios-list-box' : 'ios-list';
-            }
+            } else if (route.name === 'Search') {
+				iconName = focused
+                ? 'ios-information-circle'
+                : 'ios-information-circle-outline';
+			}
 
             // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} />;
@@ -139,7 +147,8 @@ export default function App() {
           tabBarInactiveTintColor: 'gray',
         })}
       >
-        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Search" component={SearchScreen} />
+		<Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Setting" component={SettingScreen} />
       </Tab.Navigator>
 
