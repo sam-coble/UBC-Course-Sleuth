@@ -20,10 +20,10 @@ import {
 } from 'react-native';
 
 
-function SearchScreen(props) {
+function SettingScreen(props) {
 	return (
 		<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-			<Text>Search Screen</Text>
+			<Text>Setting Screen</Text>
 		</View>
 	);
 }
