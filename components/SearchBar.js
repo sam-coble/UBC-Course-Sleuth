@@ -20,7 +20,7 @@ import {
 } from 'react-native';
 
 
-function CourseInfoScreen(props) {
+export default function SearchBar(props) {
 	return (
 		<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 			<Text>Search Screen</Text>
@@ -28,4 +28,3 @@ function CourseInfoScreen(props) {
 	);
 }
 
-export default CourseInfoScreen;
