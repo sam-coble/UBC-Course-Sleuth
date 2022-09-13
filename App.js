@@ -1,6 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from "@react-navigation/stack";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import React, {
 	Component,
 	useState,
@@ -14,8 +19,6 @@ import {
 	Button,
 } from 'react-native';
 
-
-
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
@@ -24,7 +27,96 @@ Notifications.setNotificationHandler({
   }),
 });
 
+function HomeScreen(props) {
+	return (
+		<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+		  <Text>Home Screen</Text>
+		</View>
+	  );
+}
+
+const Tab = createBottomTabNavigator();
+
+const Stack = createNativeStackNavigator();
+
+
+// class HomeScreen extends React.Component {  
+// 	render() {  
+// 	  return (  
+// 		  <View style={styles.container}>  
+// 			<Text>Home Screen</Text>  
+// 		  </View>  
+// 	  );  
+// 	}  
+//   }  
+
+// class SearchScreen extends React.Component {
+// 	render() {
+// 		return (
+// 			<View style={styles.container}>  
+//           		<Text>Search Screen</Text>  
+//         	</View>  
+// 		);
+// 	}
+// }
+
+ class SettingScreen extends React.Component {  
+     render() {  
+         return (  
+             <View style={styles.container}>  
+                 <Text>Setting Screen</Text>  
+             </View>  
+         );  
+     }  
+ }  
+
+// const TabNavigator = createMaterialBottomTabNavigator(  
+//     {  
+//         Home: { screen: HomeScreen,  
+//             navigationOptions:{  
+//                 tabBarLabel:'Home',  
+//                 tabBarIcon: ({ tintColor }) => (  
+//                     <View>  
+//                         <Icon style={[{color: tintColor}]} size={25} name={'ios-home'}/>  
+//                     </View>),  
+//             }  
+//         },  
+//         Profile: { screen: SearchScreen,  
+//             navigationOptions:{  
+//                 tabBarLabel:'Search',  
+//                 tabBarIcon: ({ tintColor }) => (  
+//                     <View>  
+//                         <Icon style={[{color: tintColor}]} size={25} name={'ios-person'}/>  
+//                     </View>),  
+//                 activeColor: '#f60c0d',  
+//                 inactiveColor: '#f65a22',  
+//                 barStyle: { backgroundColor: '#f69b31' },  
+//             }  
+//         },  
+//         Image: { screen: SettingScreen,  
+//             navigationOptions:{  
+//                 tabBarLabel:'Setting',  
+//                 tabBarIcon: ({ tintColor }) => (  
+//                     <View>  
+//                         <Icon style={[{color: tintColor}]} size={25} name={'ios-images'}/>  
+//                     </View>),  
+//                 activeColor: '#615af6',  
+//                 inactiveColor: '#46f6d7',  
+//                 barStyle: { backgroundColor: '#67baf6' },  
+//             }  
+//         },   
+//     },  
+//     {  
+//       initialRouteName: "Home",  
+//       activeColor: '#f0edf6',  
+//       inactiveColor: '#226557',  
+//       barStyle: { backgroundColor: '#3BAD87' },  
+//     },  
+// );  
+
 export default function App() {
+
+	const Stack = createStackNavigator();
 
 	// initial set to -1 as n/a
 	const [seatsRemaining, setSeatsRemaining] = useState(-1);
@@ -96,14 +188,40 @@ export default function App() {
 	}, []);
 
 	return (
-		<View style={styles.container}>
-			<Text>Welcome to UBC Course Sleuth!!!</Text>
-			<Text> ( name in progress :) ) </Text>
-			<Button onPress={getCourseStatus} title="Update status of Ling 170 001" />
-			<Text> There are {seatsRemaining} seats remaining! </Text>
-			<Text> Notification token: {expoPushToken}</Text>
-			<StatusBar style="auto" />
-		</View>
+		//<View style={styles.container}>
+		//	<Text>Welcome to UBC Course Sleuth!!!</Text>
+		//	<Text> ( name in progress :) ) </Text>
+		//	<Button onPress={getCourseStatus} title="Update status of Ling 170 001" />
+		//	<Text> There are {seatsRemaining} seats remaining! </Text>
+		//	<Text> Notification token: {expoPushToken}</Text>
+		//	<StatusBar style="auto" />
+		//</View>
+		<NavigationContainer>
+			<Tab.Navigator
+        	screenOptions={({ route }) => ({
+          		tabBarIcon: ({ focused, color, size }) => {
+            		let iconName;
+
+            if (route.name === 'Home') {
+              iconName = focused
+                ? 'ios-information-circle'
+                : 'ios-information-circle-outline';
+            } else if (route.name === 'Setting') {
+              iconName = focused ? 'ios-list-box' : 'ios-list';
+            }
+
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: 'tomato',
+          tabBarInactiveTintColor: 'gray',
+        })}
+      >
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Setting" component={SettingScreen} />
+      </Tab.Navigator>
+
+		</NavigationContainer>
 	);
 
 }
@@ -147,4 +265,5 @@ async function registerForPushNotificationsAsync() {
   }
 
   return token;
+
 }
