@@ -51,7 +51,7 @@ const dataPath = './data.json';
 function saveData() {
 	writeFileSync(dataPath, JSON.stringify(data), {encoding:'utf8'});
 }
-async function loadData() {
+function loadData() {
 	data = JSON.parse(readFileSync(dataPath, {encoding:'utf8', flag:'r'}));
 }
 
@@ -115,6 +115,9 @@ async function checkerFunc () {
 		});
 		console.log('NOTIFICATIONS TO SEND: ', notificationsToSend);
 		sendPushNotifications(notificationsToSend);
+
+		// TEST THIS FIRST
+		// unsubscribeFromFoundCourses(openSections);
 	}
 
 }
@@ -125,6 +128,14 @@ app.listen(process.env.PORT || 3000, () => console.log(`App Available`));
 
 loadData();
 checkerFunc();
+
+function unsubscribeFromFoundCourses(openSections) {
+	Object.keys(openSections).forEach(section => {
+		openSections[section].forEach(user => {
+			delete data[user].find(course => section.startsWith(course.dept + course.course));
+		});
+	});
+}
 
 function sendPushNotifications(notifications) {
 	// console.log('NOTIFICATIONS', notifications);
