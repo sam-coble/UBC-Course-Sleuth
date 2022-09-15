@@ -28,9 +28,12 @@ export default function CourseItem(props) {
 			<Text>
 				{`${courseInfo.dept} ${courseInfo.courseCode}: ${courseInfo.title}`}
 			</Text>
+			<Text>
+				{courseInfo.description}
+			</Text>
 			<View style={styles.starContainer}>
 				{
-					return new Array(courseInfo.starcont).map(e => {
+					new Array(courseInfo.starcont).map(e => {
 						return <Text>*</Text>
 					})
 				}
