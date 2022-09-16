@@ -17,14 +17,39 @@ import {
 	Text,
 	View,
 	Button,
+	ScrollView,
 } from 'react-native';
 
+import CourseItem from '../components/CourseItem'
 
 function HomeScreen(props) {
 	return (
-		<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-			<Text>Home Screen</Text>
+		<View style={{flex:1, flexDirection:'column'}}>
+			<View style={{flex:.05}}>
+				<Text>
+					My Courses:
+				</Text>
+			</View>
+			<ScrollView style={{backgroundColor:'yellow', flex:1}}>
+				<CourseItem courseInfo={{
+					title: 'CPSC 320',
+					description: 'A fun course. A fun course. A fun course. A fun course. A fun course. A fun course. A fun course. A fun course. ',
+					starCount: 5,
+					median: 72,
+					iqr: 20,
+
+				}}/>
+				<CourseItem courseInfo={{
+					title: 'LING 100',
+					description: 'A bad course',
+					starCount: 2,
+					median: 50,
+					iqr: 20,
+
+				}}/>
+			</ScrollView>
 		</View>
+	
 	);
 }
 
