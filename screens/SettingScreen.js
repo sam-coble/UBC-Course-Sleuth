@@ -19,11 +19,15 @@ import {
 	Button,
 } from 'react-native';
 
+import CourseItem from '../components/CourseItem'
 
 function SettingScreen(props) {
 	return (
-		<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-			<Text>Setting Screen</Text>
+		// <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+		// 	<Text>Setting Screen</Text>
+		// </View>
+		<View>
+			<CourseItem />
 		</View>
 	);
 }
