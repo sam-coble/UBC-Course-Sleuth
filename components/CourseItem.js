@@ -116,6 +116,8 @@ const styles = StyleSheet.create({
 	'sectionTimeGraphicContainer': {
 		flex: 1,
 		backgroundColor: 'orange',
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 	'description': {
 
