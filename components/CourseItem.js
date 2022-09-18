@@ -11,7 +11,7 @@ import {
 	TouchableOpacity,
 } from 'react-native';
 
-export default function CourseItem({courseInfo, variant}) {
+export default function CourseItem({courseInfo, variant, key}) {
 	// const [courseInfo, setCourseInfo] = useState({});
 	const [showExpandedInfo, setShowExpandedInfo] = useState(!!variant);
 
@@ -31,16 +31,19 @@ export default function CourseItem({courseInfo, variant}) {
 
 	return (
 		<TouchableOpacity
-			style={{flex:1, flexDirection:'column', width:'100%', height:'30%'}}
+			style={{flex:1, flexDirection:'column'}}
 			onPress={goToCourseInfoScreen()}
 		>
 			<View style={styles.container}>
-				<TouchableOpacity 
+				<TouchableOpacity
 					style={styles.expandButton}
-					onPress={() => setShowExpandedInfo(!showExpandedInfo)}>
-					<Text style={{textAlign: 'center'}}>
-						{showExpandedInfo ? 'v' : '>'}
-					</Text>
+					onPress={() => setShowExpandedInfo(!showExpandedInfo)}
+				>
+					<View style={{'marginTop':'25%'}}>
+						<Text style={{fontSize:20}}>
+							{showExpandedInfo ? 'v' : '>'}
+						</Text>
+					</View>
 				</TouchableOpacity>
 				<View style={styles.bodygraphdescription}>
 					<View style={styles.bodyandgraph}>
@@ -69,16 +72,16 @@ export default function CourseItem({courseInfo, variant}) {
 							</Text>
 						</View>
 					</View>
-					<View style={[styles.description, {flex:(showExpandedInfo?1:0)}]}>
 					{
-						showExpandedInfo && 
+						showExpandedInfo &&
+					<View style={[styles.description, {flex:(showExpandedInfo?1:0)}]}>
 						<View>
 							<Text>
 								{courseInfo.description}
 							</Text>
 						</View>
-					}
 					</View>
+					}
 				</View>
 			</View>
 		</TouchableOpacity>
@@ -89,13 +92,17 @@ const styles = StyleSheet.create({
 	'container': {
 		flex:1,
 		flexDirection:"row",
-		backgroundColor: 'gray',
+		backgroundColor: '#bbbbbb',
 		padding:10,
 		margin:10,
+		'borderRadius': '12%'
 	},
 	'expandButton': {
 		flex:1,
-		backgroundColor: 'blue',
+		// backgroundColor: 'blue',
+		justifyContent: 'flex-start',
+		alignItems: 'center',
+		// paddingTop:
 	},
 	'body': {
 		flex:6,
@@ -104,7 +111,7 @@ const styles = StyleSheet.create({
 	},
 	'title': {
 		flex:1,
-		backgroundColor: 'green',
+		// backgroundColor: 'green',
 	},
 	'starContainer': {
 		flex:1,
@@ -115,12 +122,12 @@ const styles = StyleSheet.create({
 	},
 	'sectionTimeGraphicContainer': {
 		flex: 1,
-		backgroundColor: 'orange',
+		// backgroundColor: 'orange',
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
 	'description': {
-
+		marginTop:10
 	},
 	'bodyandgraph': {
 		flex:1,
