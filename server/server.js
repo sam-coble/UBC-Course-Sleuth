@@ -45,7 +45,13 @@ app.post('/changeSections', urlEncodedParser, (req, res) => {
 	data[token].find(e => e.dept == dept && e.course == course).sections = sections;
 	res.status(200).end();
 });
+app.post('/searchCourses', urlEncodedParser, (req, res) => {
+	const {search} = req.body;
 
+	res.status(200).header('Content-Type', 'application/json').send({
+		
+	});
+});
 
 const dataPath = './data.json';
 function saveData() {
@@ -127,7 +133,7 @@ async function checkerFunc () {
 app.listen(process.env.PORT || 3000, () => console.log(`App Available`));
 
 loadData();
-checkerFunc();
+// checkerFunc();
 
 function unsubscribeFromFoundCourses(openSections) {
 	Object.keys(openSections).forEach(section => {

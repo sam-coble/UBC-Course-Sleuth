@@ -90,8 +90,11 @@ export default class SearchScreen extends React.Component {
           searchIcon={{ size: 24 }}
           onChangeText={text => this.SearchFilterFunction(text)}
           onClear={text => this.SearchFilterFunction('')}
-          placeholder="Type Here..."
+          placeholder="Search UBC Courses..."
           value={this.state.search}
+          inputStyle={{backgroundColor:'#bbbbbb', margin:0}}
+          inputContainerStyle={{backgroundColor:'#bbbbbb', padding:0}}
+          containerStyle={{backgroundColor:'white'}}
         />
         <FlatList
           data={this.state.dataSource}
@@ -115,7 +118,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
     backgroundColor: 'white',
-    marginTop: Platform.OS == 'ios' ? 30 : 0,
+    // marginTop: Platform.OS == 'ios' ? 30 : 0,
   },
   textStyle: {
     padding: 10,

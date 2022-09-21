@@ -11,6 +11,10 @@ npm-debug.*
 web-build/
 tokens.txt
 data.json
+server/courses.json
+server/tokens.txt
+server/data.json
+server/misc/
 
 # macOS
 .DS_Store
