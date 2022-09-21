@@ -1,3 +1,10 @@
+const { Expo } = require( 'expo-server-sdk' );
+const {readFileSync, writeFileSync} = require('fs');
+
+let data = {};
+let dataHasChanged = false;
+const dataPath = '../data.json';
+
 function saveData() {
 	writeFileSync(dataPath, JSON.stringify(data), {encoding:'utf8'});
 }
@@ -6,7 +13,6 @@ function loadData() {
 	data = JSON.parse(readFileSync(dataPath, {encoding:'utf8', flag:'r'}));
 }
 exports.loadData = loadData;
-
 
 
 

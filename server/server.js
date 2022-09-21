@@ -1,5 +1,4 @@
-const { Expo } = require( 'expo-server-sdk' );
-const {readFileSync, writeFileSync} = require('fs');
+
 const express = require('express');
 
 const app = express();
@@ -9,6 +8,7 @@ const fetch = require('node-fetch');
 
 const urlEncodedParser = bodyParser.urlencoded({ extended: false });
 
+const {saveData, loadData, checkerFunc, unsubscribeFromFoundCourses, sendPushNotifications} = require('./util.js');
 let data = {};
 let dataHasChanged = false;
 const dataPath = './data.json';
