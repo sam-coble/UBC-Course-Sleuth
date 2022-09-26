@@ -8,10 +8,17 @@ const fetch = require('node-fetch');
 
 const urlEncodedParser = bodyParser.urlencoded({ extended: false });
 
-const {saveData, loadData, checkerFunc, unsubscribeFromFoundCourses, sendPushNotifications} = require('./util.js');
-let data = {};
-let dataHasChanged = false;
-const dataPath = './data.json';
+const {
+	data, 
+	dataHasChanged, 
+	dataPath, 
+	saveData, 
+	loadData, 
+	checkerFunc, 
+	unsubscribeFromFoundCourses, 
+	sendPushNotifications
+} = require('./util.js');
+
 
 
 app.post('/addCourse', urlEncodedParser, (req, res) => {
@@ -49,7 +56,9 @@ app.post('/searchCourses', urlEncodedParser, (req, res) => {
 	const {search} = req.body;
 
 	res.status(200).header('Content-Type', 'application/json').send({
-		
+		searchResults: [
+			
+		]
 	});
 });
 
