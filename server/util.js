@@ -15,6 +15,41 @@ function loadData() {
 exports.loadData = loadData;
 
 
+function searchFunc (searchTerm)/* : course */ {
+	// isolate dept, course#, other text?
+	// also search keywords in titles?
+	return [{dept: 'CPSC', courseNum: '340'}]
+}
+
+// interface course {
+// 	dept: string,
+//  courseNum: string,
+// }
+function getCourseInfo (course/* :course */) {
+	// example
+	return {
+		dept: 'CPSC',
+		courseNum: '340',
+		title: 'Machine Learning and Data Science',
+		description: 'An intermediate introduction to machine learning and data science using the principles of blah blah blah. ',
+		sections: [
+			{
+				sectionNum: '100',
+				days: 'MWF',
+				timeStart: '1200',
+				timeEnd: '1300',
+				instructor: 'Garret',
+				instructorContact: 'cgarret@cs.ubc.ca',
+			},
+		],
+		credits: '3',
+		rating: '5',
+		topReviews: [
+			'good course 3992.6/10',
+			'very good course 3/10',
+		]
+	};
+}
 
 async function checkerFunc () {
 	if (dataHasChanged) {

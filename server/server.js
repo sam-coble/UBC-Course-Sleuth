@@ -16,7 +16,9 @@ const {
 	loadData, 
 	checkerFunc, 
 	unsubscribeFromFoundCourses, 
-	sendPushNotifications
+	sendPushNotifications,
+	searchFunc,
+	getCourseInfo,
 } = require('./util.js');
 
 
@@ -53,13 +55,21 @@ app.post('/changeSections', urlEncodedParser, (req, res) => {
 	res.status(200).end();
 });
 app.post('/searchCourses', urlEncodedParser, (req, res) => {
-	const {search} = req.body;
+	try {
+		const {search} = req.body;
+		const searchRes = searchFunc(search)
 
-	res.status(200).header('Content-Type', 'application/json').send({
-		searchResults: [
-			
-		]
-	});
+		const courseInfo = searchRes.map(course => {
+			return getCourseInfo(course);
+		});
+
+		res.status(200).header('Content-Type', 'application/json').send({
+			searchResults: searchRes,
+		});
+	} catch (e) {
+		console.log(e);
+		res.status(500).end();
+	}
 });
 
 
