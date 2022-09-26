@@ -20,10 +20,10 @@ import {
 } from 'react-native';
 
 
-function SettingScreen(props) {
+function SettingsScreen(props) {
 	return (
 		<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-			<Text>Setting Screen</Text>
+			<Text>Settings Screen</Text>
 		</View>
 		
 	);

@@ -20,7 +20,7 @@ import {
 } from 'react-native';
 
 import HomeScreen from './screens/HomeScreen';
-import SettingScreen from './screens/SettingScreen';
+import SettingsScreen from './screens/SettingScreen';
 import SearchScreen from './screens/SearchScreen';
 
 Notifications.setNotificationHandler({
@@ -132,7 +132,7 @@ export default function App() {
               iconName = focused
                 ? 'ios-information-circle'
                 : 'ios-information-circle-outline';
-            } else if (route.name === 'Setting') {
+            } else if (route.name === 'Settings') {
               iconName = focused ? 'ios-information-circle' : 'ios-information-circle-outline';
             } else if (route.name === 'Search') {
 				iconName = focused
@@ -149,7 +149,7 @@ export default function App() {
       >
         <Tab.Screen name="Search" component={SearchScreen} />
 		<Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Setting" component={SettingScreen} />
+        <Tab.Screen name="Settings" component={SettingsScreen} />
       </Tab.Navigator>
 
 		</NavigationContainer>
